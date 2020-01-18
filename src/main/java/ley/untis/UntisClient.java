@@ -189,5 +189,13 @@ public class UntisClient {
         }
     }
 
+    public TimegridResponse getTimegridUnits() throws APIRequestException {
+        try {
+            return client.invoke("getTimegridUnits", new Object[0], TimegridResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
 
 }
