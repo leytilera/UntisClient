@@ -10,6 +10,8 @@ public class RoomResponse extends ArrayList<RoomResponse.Room> {
         public String longName;
         public String foreColor;
         public String backColor;
+        public boolean active;
+        public String building;
     }
 
 }
