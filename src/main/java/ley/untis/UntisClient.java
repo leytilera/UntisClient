@@ -1,9 +1,7 @@
 package ley.untis;
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
-import ley.untis.data.AuthParams;
-import ley.untis.data.AuthResponse;
-import ley.untis.data.SubjectResponse;
+import ley.untis.data.*;
 import ley.untis.exception.APIRequestException;
 
 import java.net.URL;
@@ -69,10 +67,77 @@ public class UntisClient {
      * @return an ArrayList of subjects
      * @throws APIRequestException
      */
-    public SubjectResponse getSubjects() throws APIRequestException{
+    public SubjectResponse getSubjects() throws APIRequestException {
         try {
             return client.invoke("getSubjects", new Object[0], SubjectResponse.class);
         } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of teachers
+     * @return an ArrayList of teachers
+     * @throws APIRequestException
+     */
+    public TeacherResponse getTeachers() throws APIRequestException {
+        try {
+            return client.invoke("getTeachers", new Object[0], TeacherResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of Klassen (base class) for schoolyear
+     * @param schoolyearId Id of the schoolyear
+     * @return an ArrayList of Klassen
+     * @throws APIRequestException
+     */
+    public KlasseResponse getKlassen(String schoolyearId) throws APIRequestException {
+        try {
+            return client.invoke("getKlassen", new KlasseParams(schoolyearId), KlasseResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of Klassen (base class) for current schoolyear
+     * @return an ArrayList of Klassen
+     * @throws APIRequestException
+     */
+    public KlasseResponse getKlassen() throws APIRequestException {
+        try {
+            return client.invoke("getKlassen", new Object[0], KlasseResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of students
+     * @return an ArrayList of students
+     * @throws APIRequestException
+     */
+    public StudentResponse getStudents() throws APIRequestException {
+        try {
+            return client.invoke("getStudents", new Object[0], StudentResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of rooms
+     * @return an ArrayList of rooms
+     * @throws APIRequestException
+     */
+    public RoomResponse getRooms() throws APIRequestException {
+        try {
+            return client.invoke("getRooms", new Object[0], RoomResponse.class);
+        } catch (Throwable e)
+        {
             throw new APIRequestException(e);
         }
     }
