@@ -197,5 +197,21 @@ public class UntisClient {
         }
     }
 
+    public Schoolyear getCurrentSchoolyear() throws APIRequestException {
+        try {
+            return client.invoke("getCurrentSchoolyear", new Object[0], Schoolyear.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    public SchoolyearResponse getSchoolyears() throws APIRequestException {
+        try {
+            return client.invoke("getSchoolyears", new Object[0], SchoolyearResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
 
 }
