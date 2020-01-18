@@ -14,18 +14,32 @@ public class UntisClient {
     public AuthResponse auth;
     Map<String , String> header;
 
+    public static String getURLBySchoolname(String schoolname) throws APIRequestException {
+        try {
+            JsonRpcHttpClient client = new JsonRpcHttpClient(new URL("https://mobile.webuntis.com/ms/schoolquery2"));
+            SchoolParams[] params = new SchoolParams[1];
+            params[0] = new SchoolParams(schoolname);
+            SchoolResponse res = client.invoke("searchSchool", params, SchoolResponse.class);
+
+            String url = "https://" + res.schools[0].server + "/WebUntis/jsonrpc.do";
+
+            return url;
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
     /**
      * Creates an UntisClient and starts a session.
      * @param username The username of the user
      * @param password The password of the user
-     * @param url The URL of the server including jsonrpc.do
      * @param school The name of the school
      * @param appname The name of your app
      * @throws APIRequestException
      */
-    public UntisClient(String username, String password, String url, String school, String appname) throws APIRequestException{
+    public UntisClient(String username, String password, String school, String appname) throws APIRequestException{
         try {
-            client = new JsonRpcHttpClient(new URL(url + "?school=" + school));
+            client = new JsonRpcHttpClient(new URL(getURLBySchoolname(school) + "?school=" + school));
 
             auth = client.invoke("authenticate", new AuthParams(username, password, appname), AuthResponse.class);
             header = new HashMap<>();
@@ -41,12 +55,11 @@ public class UntisClient {
      * Creates an UntisClient and starts a session.
      * @param username The username of the user
      * @param password The password of the user
-     * @param url The URL of the server including jsonrpc.do
      * @param school The name of the school
      * @throws APIRequestException
      */
-    public UntisClient(String username, String password, String url, String school) throws APIRequestException{
-        this(username, password, url, school, "JavaUntis");
+    public UntisClient(String username, String password, String school) throws APIRequestException{
+        this(username, password, school, "JavaUntis");
     }
 
     /**
