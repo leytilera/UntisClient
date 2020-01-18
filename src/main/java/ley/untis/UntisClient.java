@@ -163,5 +163,31 @@ public class UntisClient {
         }
     }
 
+    /**
+     * Get list of departments
+     * @return an ArrayList of departments
+     * @throws APIRequestException
+     */
+    public DepartmentResponse getDepartments() throws APIRequestException {
+        try {
+            return client.invoke("getDepartments", new Object[0], DepartmentResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of holidays
+     * @return an ArrayList of holidays
+     * @throws APIRequestException
+     */
+    public HolidayResponse getHolidays() throws APIRequestException {
+        try {
+            return client.invoke("getHolidays", new Object[0], HolidayResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
 
 }
