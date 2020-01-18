@@ -2,3 +2,4 @@
 .gradle
 src/test
 gradle.properties
+build
