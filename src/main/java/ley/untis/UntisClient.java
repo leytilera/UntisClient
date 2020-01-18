@@ -15,6 +15,15 @@ public class UntisClient {
     public AuthResponse auth;
     Map<String , String> header;
 
+    /**
+     * Creates an UntisClient and starts a session.
+     * @param username The username of the user
+     * @param password The password of the user
+     * @param url The URL of the server including jsonrpc.do
+     * @param school The name of the school
+     * @param appname The name of your app
+     * @throws APIRequestException
+     */
     public UntisClient(String username, String password, String url, String school, String appname) throws APIRequestException{
         try {
             client = new JsonRpcHttpClient(new URL(url + "?school=" + school));
@@ -29,10 +38,23 @@ public class UntisClient {
 
     }
 
+    /**
+     * Creates an UntisClient and starts a session.
+     * @param username The username of the user
+     * @param password The password of the user
+     * @param url The URL of the server including jsonrpc.do
+     * @param school The name of the school
+     * @throws APIRequestException
+     */
     public UntisClient(String username, String password, String url, String school) throws APIRequestException{
         this(username, password, url, school, "JavaUntis");
     }
 
+    /**
+     * End the session.
+     * Use to logout from the server. Only do this, if you don't longer need this Object!
+     * @throws APIRequestException
+     */
     public void logout() throws APIRequestException {
         try {
             client.invoke("logout", new Object[0], Object.class);
