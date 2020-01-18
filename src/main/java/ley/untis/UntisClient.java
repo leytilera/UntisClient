@@ -3,6 +3,7 @@ package ley.untis;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import ley.untis.data.AuthParams;
 import ley.untis.data.AuthResponse;
+import ley.untis.data.SubjectResponse;
 import ley.untis.exception.APIRequestException;
 
 import java.net.URL;
@@ -58,6 +59,19 @@ public class UntisClient {
     public void logout() throws APIRequestException {
         try {
             client.invoke("logout", new Object[0], Object.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get list of subjects
+     * @return an ArrayList of subjects
+     * @throws APIRequestException
+     */
+    public SubjectResponse getSubjects() throws APIRequestException{
+        try {
+            return client.invoke("getSubjects", new Object[0], SubjectResponse.class);
         } catch (Throwable e) {
             throw new APIRequestException(e);
         }
