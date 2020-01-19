@@ -189,6 +189,11 @@ public class UntisClient {
         }
     }
 
+    /**
+     * Get timegrid
+     * @return an ArrayList of days with time units
+     * @throws APIRequestException
+     */
     public TimegridResponse getTimegridUnits() throws APIRequestException {
         try {
             return client.invoke("getTimegridUnits", new Object[0], TimegridResponse.class);
@@ -197,6 +202,11 @@ public class UntisClient {
         }
     }
 
+    /**
+     * Data for the current schoolyear
+     * @return a Schoolyear object
+     * @throws APIRequestException
+     */
     public Schoolyear getCurrentSchoolyear() throws APIRequestException {
         try {
             return client.invoke("getCurrentSchoolyear", new Object[0], Schoolyear.class);
@@ -205,6 +215,11 @@ public class UntisClient {
         }
     }
 
+    /**
+     * List of all available schoolyears
+     * @return an ArrayList of schoolyears
+     * @throws APIRequestException
+     */
     public SchoolyearResponse getSchoolyears() throws APIRequestException {
         try {
             return client.invoke("getSchoolyears", new Object[0], SchoolyearResponse.class);
