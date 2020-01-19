@@ -247,14 +247,48 @@ public class UntisClient {
      * Get timetable for klasse, teacher, student, room, subject
      * @param id the id of the element
      * @param type the type of the element (use Constants class for this)
-     * @param startDate the start date of the requested days
-     * @param endDate the end date of the requested days
+     * @param startDate the start date of the requested days (format: YYYYMMDD)
+     * @param endDate the end date of the requested days (format: YYYYMMDD)
      * @return an ArrayList of period objects
      * @throws APIRequestException
      */
     public TimetableResponse getTimetable(int id, int type, int startDate, int endDate) throws APIRequestException {
         try {
             return client.invoke("getTimetable", new SimpleTimetableDateParams(id, type, startDate, endDate), TimetableResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     * Get a customizable timetable for klasse, teacher, student, room, subject..
+     * @param id the id of the element
+     * @param type the type of the element (use Constants class for this)
+     * @param options optianal options to customize the return object
+     * @return an ArrayList of period objects
+     * @throws APIRequestException
+     */
+    public TimetableResponse getTimetable(int id, int type, Options options) throws APIRequestException {
+        try {
+            return client.invoke("getTimetable", new CustonTimetableParams(id, type, options), TimetableResponse.class);
+        } catch (Throwable e) {
+            throw new APIRequestException(e);
+        }
+    }
+
+    /**
+     *
+     * @param id the id of the element
+     * @param type the type of the element (use Constants class for this)
+     * @param options optianal options to customize the return object
+     * @param startDate the start date of the requested days (format: YYYYMMDD)
+     * @param endDate the end date of the requested days (format: YYYYMMDD)
+     * @return an ArrayList of period objects
+     * @throws APIRequestException
+     */
+    public TimetableResponse getTimetable(int id, int type, Options options, int startDate, int endDate) throws APIRequestException {
+        try {
+            return client.invoke("getTimetable", new CustonTimetableParams(id, type, options, startDate, endDate), TimetableResponse.class);
         } catch (Throwable e) {
             throw new APIRequestException(e);
         }
