@@ -10,7 +10,9 @@ public class KlasseResponse extends ArrayList<KlasseResponse.Klasse> {
         public String longName;
         public String backColor;
         public String longColor;
-
+        public boolean active;
+        public String teacher1;
+        public String teacher2;
 
     }
 
