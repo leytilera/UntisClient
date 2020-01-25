@@ -78,8 +78,16 @@ public class UntisClient {
     public void logout() throws APIRequestException {
         try {
             client.invoke("logout", new Object[0], Object.class);
+            auth = null;
         } catch (Throwable e) {
             throw new APIRequestException(e);
+        }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        if (auth != null) {
+            logout();
         }
     }
 
