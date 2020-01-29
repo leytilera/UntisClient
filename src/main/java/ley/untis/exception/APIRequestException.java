@@ -28,6 +28,8 @@ public class APIRequestException extends Exception {
                 case "too many results":
                     errorType = EnumError.TOOMANYSCHOOLS;
                     break;
+                case "no allowed date":
+                    errorType = EnumError.DATENOTALLOWED;
                 default:
                     errorType = EnumError.UNKNOWN;
                     break;
