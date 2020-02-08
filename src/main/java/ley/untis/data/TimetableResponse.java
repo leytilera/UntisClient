@@ -31,6 +31,11 @@ public class TimetableResponse extends ArrayList<TimetableResponse.Period> {
             public String name;
             public String longname;
             public String externalkey;
+            public int orgid;
+            public String orgname;
+            public String orglongname;
+            public String orgexternalkey;
+
         }
     }
 
