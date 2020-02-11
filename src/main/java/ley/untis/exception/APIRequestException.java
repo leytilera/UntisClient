@@ -17,7 +17,9 @@ public class APIRequestException extends Exception {
             errorType = EnumError.ELEMENTNOTFOUND;
         } else if (message.contains("no right")) {
             errorType = EnumError.NOPERMISSION;
-        } else {
+        } else if (message.contains("webuntis.com")) {
+            errorType = EnumError.NOCONNECTION;
+        }else {
             switch (message) {
                 case "bad credentials":
                     errorType = EnumError.BADCREDENTIALS;
